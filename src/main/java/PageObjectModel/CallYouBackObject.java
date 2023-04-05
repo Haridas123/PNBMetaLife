@@ -7,7 +7,9 @@ import org.openqa.selenium.WebElement;
 public class CallYouBackObject {
 	public WebDriver driver;
 	
-	By toggleButton= By.xpath("(//button[@class='customModal-close customModal-toggle'])[1]");
+	//By toggleButton= By.xpath("(//button[@class='customModal-close customModal-toggle'])[1]");
+	
+	By toggleButton= By.xpath("//div[@class='customModal-wrapper customModal-transition mainbrochurecustom']//button[@class='customModal-close customModal-toggle']");
 	By userName=By.xpath("//input[@id='broname']");
 	By mobile=By.xpath("//input[@id='bromobileNumber']");
 	By getOpt=By.xpath("//a[@class='lead-gen-breaker__cta btn-brand-1st leadFormGenerateOTP']");
