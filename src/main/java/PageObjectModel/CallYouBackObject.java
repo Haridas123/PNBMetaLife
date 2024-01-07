@@ -10,10 +10,10 @@ public class CallYouBackObject {
 	//By toggleButton= By.xpath("(//button[@class='customModal-close customModal-toggle'])[1]");
 	
 	By toggleButton= By.xpath("//div[@class='customModal-wrapper customModal-transition mainbrochurecustom']//button[@class='customModal-close customModal-toggle']");
-	By userName=By.xpath("//input[@id='broname']");
-	By mobile=By.xpath("//input[@id='bromobileNumber']");
-	By getOpt=By.xpath("//a[@class='lead-gen-breaker__cta btn-brand-1st leadFormGenerateOTP']");
-	By otp=By.xpath("//input[@id='brojoinNowOTP']");
+	By userName=	By.xpath("//input[@id='broname']");
+	By mobile=	By.xpath("//input[@id='bromobileNumber']");
+	By getOpt=	By.xpath("//a[@class='lead-gen-breaker__cta btn-brand-1st leadFormGenerateOTP']");
+	By otp=		By.xpath("//input[@id='brojoinNowOTP']");
 	By selectCity= By.xpath("//select[@id='ctl00_mainContent_DropDownListCurrency']");
 	By submitBtn= By.xpath("//a[@class='lead-gen-breaker__cta btn-brand-1st leadFormSubmit']");
 	

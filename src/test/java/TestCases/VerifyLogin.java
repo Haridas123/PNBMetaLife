@@ -12,12 +12,13 @@ import org.testng.annotations.Test;
 import PageObjectModel.LoginPageObjects;
 import Resources.BaseClass;
 
-public class VerifyLogin extends BaseClass{
+public class VerifyLogin extends BaseClass
+{
 	public List<WebElement> cuntryName;
 	String name;
 	
-	
-	@Test
+	@Test(groups= {"SmokeTest"})  
+	  
 public void verifyLogin() throws IOException, InterruptedException {
 	
 	driver= driverInitialization();

@@ -13,6 +13,7 @@
     <classes>
       <!--<class name="TestCases.PNBMetLIfeHomePage_TestCases"/>-->
     <!-- <class name="TestCases.VerifyLogin"/> -->
+    
       <class name="LoginListTestCases.LoginDropDownTestcase"/>
       
     </classes>

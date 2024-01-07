@@ -22,7 +22,8 @@ import LoginsObjects.LoginDropDownObjects;
 import PageObjectModel.CallYouBackObject;
 import Resources.BaseClass;
 
-public class LoginDropDownTestcase extends BaseClass{
+public class LoginDropDownTestcase extends BaseClass
+{
 	
 	public List<WebElement> loginItems;
 	String actual,expected;
@@ -34,7 +35,8 @@ public class LoginDropDownTestcase extends BaseClass{
 	
 	//@Test(groups = "searchData")
 	//@Test(dataProvider = "searchText")
-	public void searchData(String inputString,String password) throws IOException {
+	
+	public void lasearchData(String inputString,String password) throws IOException {
 		
 		//String inputString="term plan";
 		
@@ -48,9 +50,12 @@ public class LoginDropDownTestcase extends BaseClass{
 			
 		LoginDropDownObjects loginObj=new LoginDropDownObjects(driver);
 		loginObj.search().click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		loginObj.searchBox().sendKeys(password);
 		loginObj.searchLink().click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		loginObj.close().click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		System.out.println("searching data is passed");
 		
 	}
@@ -68,7 +73,8 @@ public class LoginDropDownTestcase extends BaseClass{
 	
 	
 	//@Test(groups="login" )
-	@Test
+	@Test(groups= {"SmokeTest"})  
+	 
 	public void loginBtn( ) throws IOException {
 		
 		String actual,expected;
@@ -78,6 +84,7 @@ public class LoginDropDownTestcase extends BaseClass{
 		driver.get("https://www.pnbmetlife.com/");
 		driver.manage().window().maximize();
 		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		CallYouBackObject call = new CallYouBackObject(driver);
 		call.toggleBtn().click();
 		

@@ -20,7 +20,8 @@ import PageObjectModel.CallYouBackObject;
 import PageObjectModel.PNBMetLifeHomePage_Objects;
 import Resources.BaseClass;
 
-public class PNBMetLIfeHomePage_TestCases extends BaseClass {
+public class PNBMetLIfeHomePage_TestCases extends BaseClass 
+{
 
 	public List<WebElement> cuntryName;
 	public List<WebElement> headerItems;
@@ -37,7 +38,7 @@ public class PNBMetLIfeHomePage_TestCases extends BaseClass {
 	public String name, name2, agentName, headLine, headLineText;
 	public PNBMetLifeHomePage_Objects pnbObjects;
 
-	// @Test
+	@Test(groups= {"SanityTest"})   
 	public void header() throws IOException, InterruptedException {
 
 		driver = driverInitialization();
@@ -46,13 +47,13 @@ public class PNBMetLIfeHomePage_TestCases extends BaseClass {
 
 		pnbObjects = new PNBMetLifeHomePage_Objects(driver);
 		CallYouBackObject callObj = new CallYouBackObject(driver);
-
+		System.out.println("header  Executed ");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
 		callObj.toggleBtn().click();
 
 	}
 
-	// @Test
+	@Test(groups= {"SanityTest"})
 	public void headerItems() {
 
 		headerItems = pnbObjects.headerItems();
@@ -62,9 +63,10 @@ public class PNBMetLIfeHomePage_TestCases extends BaseClass {
 
 			Actions action = new Actions(driver);
 			action.moveToElement(headerItems.get(j)).perform();
-
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+			System.out.println("headerItems Executed ----->  "+name2);
 		}
-
+		System.out.println("headerItems Executed ");
 	}
 
 	// @Test
@@ -268,7 +270,7 @@ public class PNBMetLIfeHomePage_TestCases extends BaseClass {
 
 	}
 
-	@Test
+	@Test(groups= {"SanityTest"})     
 	public void footerLinks() throws IOException, InterruptedException {
 
 		driver = driverInitialization();
@@ -283,7 +285,7 @@ public class PNBMetLIfeHomePage_TestCases extends BaseClass {
 		pnbObjects = new PNBMetLifeHomePage_Objects(driver);
 		CallYouBackObject callObj = new CallYouBackObject(driver);
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(9));
 		callObj.toggleBtn().click();
 		
 		  //Disclaimer 
@@ -342,6 +344,7 @@ public class PNBMetLIfeHomePage_TestCases extends BaseClass {
 			
 			//System.out.println("names of links --->" + primlinks.get(t).getText());
 			driver.navigate().back();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
 			callObj.toggleBtn().click();
 			primlinks = pnbObjects.primaryFooterLink();
 		}

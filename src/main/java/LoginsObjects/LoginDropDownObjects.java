@@ -11,15 +11,16 @@ public class LoginDropDownObjects {
 	public WebDriver driver;
 	
 	
-	By  login=By.xpath("//label[@class='loginDropdown']");
-	By loginList=By.xpath(" //div[@class='loginDropMenu']//ul//li");
+	By  login=	By.xpath("//label[@class='loginDropdown']");
+	By  loginList=	By.xpath(" //div[@class='loginDropMenu']//ul//li");
 	
 	//search test case
-	By searchBtn=By.xpath("//div[@class='header__utilities']//div[@title='SEARCH']");
-	By noResult=By.xpath("//div[@class='font-body-3 ']");
-	By searchBtn2=By.xpath("//a[@id='homepage__global-searchLink']");
-	By closeBtn=By.xpath("//div[@class='search-overlay__close']");
-	By searchText=By.xpath("//input[@id='searchInPage']");
+	
+	By searchBtn=	By.xpath("//div[@class='header__utilities']//div[@title='SEARCH']");
+	By noResult=	By.xpath("//div[@class='font-body-3 ']");
+	By searchBtn2=	By.xpath("//a[@id='homepage__global-searchLink']");
+	By closeBtn=	By.xpath("//div[@class='search-overlay__close']");
+	By searchText=	By.xpath("//input[@id='searchInPage']");
 	
 	public LoginDropDownObjects(WebDriver driver2) {
 		this.driver=driver2;

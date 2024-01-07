@@ -5,9 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPageObjects {
+	
 	//this driver dont have scope. driver=NULL;
 	public WebDriver driver;
+	
 	//First testing commit
+	
 	By loginBt= By.xpath("(//div[@title='LOG IN'])[1]");
 	By loginBt2= By.xpath("//input[@value='Login']");
 	By selectCountry=By.xpath("//div[@class='footer-country-selector font-body-4']");

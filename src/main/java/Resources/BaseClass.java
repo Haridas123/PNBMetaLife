@@ -13,7 +13,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
  
 
 
-public class BaseClass {
+public class BaseClass 
+{
 	
 	 public WebDriver driver;
 	
@@ -29,11 +30,11 @@ public class BaseClass {
 		
 		if(browserName.equalsIgnoreCase("chrome"))
 		{
-			//System.setProperty("webdriver.chrome.driver", "E:\\chromedriver_ver 105\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "E:\\chromedriver-ver 114\\chromedriver.exe");
 			
-			WebDriverManager.chromedriver().setup();	// this line detects browser version latest.we don't need to download driver
+			//WebDriverManager.chromedriver().setup();	// this line detects browser version latest.we don't need to download driver
 			driver =   new ChromeDriver();
-			//driver.get("https://www.makemytrip.com/hotels/");
+			
 			
 			 
 		}

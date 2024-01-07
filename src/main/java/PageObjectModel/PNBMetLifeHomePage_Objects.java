@@ -6,15 +6,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PNBMetLifeHomePage_Objects {
+public class PNBMetLifeHomePage_Objects 
+{
 	public WebDriver driver;
 
-	By header_Navigation = By.xpath("//div[@class='header__navigation-container-menu-item-title font-eyebrow-1']");
-	By loginbtn = By.xpath("//label[@class='loginDropdown']");
-	By searchBtn = By.xpath("//div[@class='header__utilities']//div[@class='header__search-container']");
-	By our = By.xpath(" //div[@class='content-promo-banner__eyebrow font-eyebrow-1']");
-	By promobanner = By.xpath(" //div[@class='content-promo-banner__headline font-header-4 font-header-5-sm font-header-4-md']");
-	By exploreNowbtn = By.xpath("//div//a[contains(text(),'EXPLORE NOW')]");
+	By header_Navigation =	 By.xpath("//div[@class='header__navigation-container-menu-item-title font-eyebrow-1']");
+	By loginbtn = 	By.xpath("//label[@class='loginDropdown']");
+	By searchBtn =	 By.xpath("//div[@class='header__utilities']//div[@class='header__search-container']");
+	By our = 	By.xpath(" //div[@class='content-promo-banner__eyebrow font-eyebrow-1']");
+	By promobanner =	 By.xpath(" //div[@class='content-promo-banner__headline font-header-4 font-header-5-sm font-header-4-md']");
+	By exploreNowbtn =	 By.xpath("//div//a[contains(text(),'EXPLORE NOW')]");
 	By leftcontainer = By.xpath("//div[@class='report-breaker__left-container']");
 	By beaware = By.xpath("//div[@class='report-breaker__headline-right font-desc-3 font-desc-2-md']");
 	By kMore = By.xpath("//a[@class='report-breaker__link']");
@@ -53,7 +54,8 @@ public class PNBMetLifeHomePage_Objects {
 	By footerCall=By.xpath("//div[@class='footer-info__contact font-cta-2']//a");
 	
 	
-	public PNBMetLifeHomePage_Objects(WebDriver driver) {
+	public PNBMetLifeHomePage_Objects(WebDriver driver) 
+	{
 		this.driver = driver;
 	}
 

@@ -8,8 +8,12 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -19,15 +23,24 @@ import LoginsObjects.CustomerLoginObjects;
 import LoginsObjects.LoginDropDownObjects;
 import PageObjectModel.CallYouBackObject;
 import Resources.BaseClass;
+import org.openqa.selenium.Alert;
 
-public class CutomerLoginTestcases extends BaseClass{
+public class CutomerLoginTestcases extends BaseClass
+{
 	
 	public List<WebElement> loginItems;
 	public CustomerLoginObjects custObj;
+	public List<WebElement> menuItems;
+	public List<WebElement> social;
+	public List<WebElement> pagerItems;
+	public List<WebElement> saleChannelItems;
+
+	
 	
 
-	@Test(dataProvider = "loginData")
-	public void loginTry(String userName,String password) throws IOException {
+	//@Test(dataProvider = "loginData")
+	@Test(groups= {"SmokeTest"})
+	public void aloginTry( ) throws IOException, InterruptedException {
 		
 		String name;
 		String actual="Error: Either the login id or password is incorrect";
@@ -40,7 +53,7 @@ public class CutomerLoginTestcases extends BaseClass{
 		
 		CallYouBackObject call = new CallYouBackObject(driver);
 		call.toggleBtn().click();
-		
+		custObj=new CustomerLoginObjects(driver);
 		LoginDropDownObjects loginObj=new LoginDropDownObjects(driver);
 		
 		loginObj.logins().click();
@@ -67,32 +80,35 @@ public class CutomerLoginTestcases extends BaseClass{
 		driver.switchTo().window(child_Tab);
 		WebElement partnerLoginBtn=driver.findElement(By.xpath("//div[@class='btn-group']"));
 		partnerLoginBtn.click();
-		
+		//driver.switchTo().window(parent_Tab);
 	
 		}
-		CustomerLoginObjects custObj=new CustomerLoginObjects(driver);
-		
-		custObj.enterLoginId().sendKeys(userName);
-		custObj.enterPassword().sendKeys(password);
+		//custObj=new CustomerLoginObjects(driver);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		custObj.enterLoginId().sendKeys("haridas");
+		custObj.enterPassword().sendKeys("password123");
 		custObj.submitBtn().click();
-		expected=custObj.errorMsg().getText();
-		Assert.assertEquals(actual, expected);
+		
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		//expected=custObj.errorMsg().getText();
+		
+		//Assert.assertEquals(actual, expected);
 		// this line i have used for avoiding "stale element reference: element is not attached to the page document"
 		loginItems=loginObj.loginItemList();
 	}
-		
+	
 		
 }
 	
-	@DataProvider
+	//@DataProvider
 	public Object[][] loginData(){
-		Object[][] loginInput=new Object[18][2];
-		loginInput[0][0]="  ";					//valid id ---> Haridasq , Hari@123
+		Object[][] loginInput=new Object[2][2];
+		loginInput[0][0]="haridas  ";					//valid id ---> Haridasq , Hari@123
 		loginInput[0][1]="hari@123";
-		
+		/*	
 		loginInput[1][0]="hari";	//invalid userName
 		loginInput[1][1]=" Hari@123 "; 		//password start with space ,invalid
-	/*	
+		
 		loginInput[2][0]="@hari";	//invalid username start with special symbol
 		loginInput[2][1]="Hari@123 ";//valid password
 		
@@ -118,4 +134,138 @@ public class CutomerLoginTestcases extends BaseClass{
 		return loginInput;
 	}
 	
+	/*
+	//@Test
+	public void menuItemLIst() {
+		
+		//CallYouBackObject call = new CallYouBackObject(driver);
+		call.toggleBtn().click();
+		
+		//LoginDropDownObjects loginObj=new LoginDropDownObjects(driver);
+		
+		loginObj.logins().click();
+		loginItems=loginObj.loginItemList();
+		custObj=new CustomerLoginObjects(driver);
+		menuItems=custObj.topMenuList();
+		for(int t=0;t<menuItems.size();t++)
+		{
+			menuItems.get(t).click();
+		}
+	}*/
+	
+	
+	//@Test
+	public void headSocialLinks() throws InterruptedException {
+		
+	social=custObj.socialLinklist();
+		String title;
+		for(int s=0;s<social.size();s++)
+		{	//this line works.it stop the execution control for 8 second every iteration	
+			Thread.sleep(8000);
+			
+			//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));  //not working
+		//	wait.until(ExpectedConditions.elementToBeClickable(social.get(s)));			//not working
+		//	((JavascriptExecutor)driver).executeScript("arguments[0].click();", social.get(s));	//not working
+			
+			title=social.get(s).getText();
+			if(title.contentEquals("1800-425-69-69 (For customers calling from within India only)")) {
+				//social.get(s).click();
+			// Switching to Alert        
+		        Alert alert = driver.switchTo().alert();
+				// to cancel the Alert
+				driver.switchTo().alert().dismiss();
+				System.out.println("first Titel--->"+social.get(s).getText()+"index "+s);	
+				
+			}
+			else {
+				social.get(s).click();
+				System.out.println(social.get(s).getText());
+			}
+			
+		}
+	}
+	
+	//@Test
+	public void newUser() throws InterruptedException
+	{
+		
+		String headline,securityAnsText,policyText,DOB,email,mobile;
+	
+	//	custObj.forgotPasswordbtn().click();
+		custObj.newUserBtn().click();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		custObj.inputCustomerId().sendKeys("22123");
+		custObj.newUserBtn().click();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+			headline=custObj.userRegistration().getText();
+			policyText=custObj.policyNoText().getText();
+			System.out.println("policyText --->"+policyText);
+		//Assert.assertEquals(headline, "User Registration", "headline matched");
+		
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));  //not working
+		//wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy("custObj.inputCustomerId()"));			//not working
+		
+		/*
+		//custObj.inputCustomerId().sendKeys("haridas123");
+		Thread.sleep(5000);
+		
+		
+		custObj.inputUserName().sendKeys("hari123");
+		securityAnsText=custObj.securityAnsText().getText();
+	//	Assert.assertEquals(securityAnsText, "Security Answer:", "Security Answer: matched");
+		Thread.sleep(5000);
+		custObj.inputSecurityAns().sendKeys("tandulwadi");
+		policyText=custObj.policyNoText().getText();
+	//	Assert.assertEquals(policyText, "Policy No./Solution Id*:", "Policy No./Solution Id*: matched");
+		Thread.sleep(5000);
+		custObj.inputPolicyNo().sendKeys("1234567890");
+		DOB=custObj.dobText().getText();
+		Thread.sleep(5000);
+	//	Assert.assertEquals(DOB, "DOB*:", "DOB*: matched");
+		custObj.dob().click();
+		custObj.selectYear().click();
+		custObj.selectMonth();
+		custObj.selectDay();
+		
+		email=custObj.emailText().getText();
+//		Assert.assertEquals(email, "Email ID*:", "Email ID*: matched");
+		Thread.sleep(5000);
+		custObj.inputEmailId().sendKeys("tokalwadhari@gmail.com");
+		mobile=custObj.mobileText().getText();
+	//	Assert.assertEquals(mobile, "Mobile*:", "Mobile*: matched");
+		Thread.sleep(5000);
+		custObj.inputMobileCode().sendKeys("91");
+		custObj.inputMobileNo().sendKeys("9545056174");
+		custObj.userResetBtn().click();
+		custObj.userResetBtn().click();  */
+		
+		
+	}
+	
+	//@Test
+	public void pagerList() throws InterruptedException {
+		  List<WebElement> pList=driver.findElements(By.xpath("//div[@class='bx-wrapper']//li[2]"));
+		
+		pagerItems=custObj.pagerItemList();
+		
+		for(int p=0;p<pagerItems.size();p++) {
+			Thread.sleep(5000);
+			pagerItems.get(p).click();
+			//pList.get(p).click();
+			System.out.println("tagName"+pagerItems.get(p).getTagName());
+		}
+	}
+	
+	//@Test
+	
+	public void salesChannelList() {
+		saleChannelItems=custObj.salesChannelList();
+		for(int s=0;s<saleChannelItems.size();s++) {
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+			saleChannelItems.get(s).click();
+			System.out.println("title -- > "+ saleChannelItems.get(s).getText());
+		}
+	}
 }

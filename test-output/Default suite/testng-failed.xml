@@ -5,7 +5,7 @@
     <classes>
       <class name="LoginListTestCases.CutomerLoginTestcases">
         <methods>
-          <include name="loginTry"/>
+          <include name="aloginTry"/>
         </methods>
       </class> <!-- LoginListTestCases.CutomerLoginTestcases -->
     </classes>
